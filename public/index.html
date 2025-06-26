@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sistema Bancario</title>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="layout">
+    <!-- Menú lateral -->
+    <aside class="sidebar">
+      <h2>🏦 Menú</h2>
+      <nav>
+        <a href="#" data-section="monedas">Monedas</a>
+        <a href="#" data-section="bancos">Bancos</a>
+        <a href="#" data-section="plazas">Plazas</a>
+        <a href="#" data-section="activos">Activos</a>
+        <a href="#" data-section="operaciones">Operaciones</a>
+        <a href="#" data-section="bovedas">Bóvedas</a>
+        <a href="#" data-section="transacciones">Transacciones</a>
+        <a href="#" data-section="saldos">Saldos</a>
+        <a href="#" data-section="Transportadores">Transportadores</a>
+      </nav>
+    </aside>
+    <!-- Contenido principal -->
+    <div class="main">
+      <header class="header">
+        <h1>Sistema Bancario</h1>
+        <button onclick="simularSistemaBancario()">Simular Sistema Bancario</button>
+      </header>
+
+      <main class="content">
+        <!-- MONEDAS -->
+        <section class="modulo" data-section="monedas">
+          <h3>Monedas</h3>
+          <div class="modulo-grid">
+            <div>
+              <h4>Registrar Moneda</h4>
+              <input type="text" id="moneda-nombre" placeholder="Nombre de la moneda">
+              <button onclick="registrarMoneda()">Registrar</button>
+              <p id="moneda-respuesta"></p>
+            </div>
+            <div>
+              <h4>Listar Monedas</h4>
+              <button onclick="listarMonedas()">Actualizar Lista</button>
+              <ul id="lista-monedas"></ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- BANCOS -->
+        <section class="modulo" data-section="bancos">
+          <h3>Bancos</h3>
+          <div class="modulo-grid">
+            <div>
+              <h4>Registrar Banco</h4>
+              <input type="text" id="banco-nombre" placeholder="Nombre del banco">
+              <button onclick="registrarBanco()">Registrar</button>
+              <p id="banco-respuesta"></p>
+            </div>
+            <div>
+              <h4>Listar Bancos</h4>
+              <button onclick="listarBancos()">Actualizar Lista</button>
+              <ul id="lista-bancos"></ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- PLAZAS -->
+        <section class="modulo" data-section="plazas">
+          <h3>Plazas</h3>
+          <div class="modulo-grid">
+            <div>
+              <h4>Registrar Plaza</h4>
+              <input type="text" id="plaza-nombre" placeholder="Nombre de la plaza">
+              <button onclick="registrarPlaza()">Registrar</button>
+            </div>
+            <div>
+              <h4>Listar Plazas</h4>
+              <button onclick="listarPlazas()">Actualizar Lista</button>
+              <ul id="lista-plazas"></ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- ACTIVOS -->
+        <section class="modulo" data-section="activos">
+          <h3>Tipos de Activo y Denominaciones</h3>
+          <div class="modulo-grid">
+            <div>
+              <h4>Registrar Tipo de Activo</h4>
+              <input type="text" id="tipo-activo-nombre" placeholder="Nombre del tipo de activo">
+              <button onclick="registrarTipoActivo()">Registrar</button>
+
+              <h4>Registrar Denominación</h4>
+              <input type="text" id="denom-moneda" placeholder="Moneda (ej: USD)">
+              <input type="number" id="denom-valor" placeholder="Valor (ej: 100)">
+              <button onclick="registrarDenom()">Registrar</button>
+            </div>
+            <div>
+              <h4>Listar Tipos de Activo</h4>
+              <button onclick="listarTiposActivo()">Actualizar Lista</button>
+              <ul id="lista-tipos-activo"></ul>
+
+              <h4>Listar Denominaciones</h4>
+              <input type="text" id="denom-lista-moneda" placeholder="Moneda (ej: USD)">
+              <button onclick="listarDenoms()">Listar</button>
+              <ul id="lista-denoms"></ul>
+            </div>
+          </div>
+        </section>
+        <!-- OPERACIONES -->
+        <section class="modulo" data-section="operaciones">
+          <h3>Tipos de Operaciones</h3>
+          <div class="modulo-grid">
+            <div>
+              <h4>Registrar Tipo de Operación</h4>
+              <input type="text" id="tipo-operacion-nombre" placeholder="Nombre del tipo de operación">
+              <button onclick="registrarTipoOperacion()">Registrar</button>
+            </div>
+            <div>
+              <h4>Listar Tipos de Operación</h4>
+              <button onclick="listarTiposOperacion()">Actualizar Lista</button>
+              <ul id="lista-tipos-operacion"></ul>
+            </div>
+          </div>
+        </section>
+        <!-- TRANSPORTADORES -->
+<section class="modulo" data-section="Transportadores">
+  <h3>Transportadores</h3>
+  <div class="modulo-grid">
+    <div>
+      <h4>Registrar Transportador</h4>
+      <input type="text" id="transportador-nombre" placeholder="Nombre del transportador">
+      <button onclick="registrarTransportador()">Registrar</button>
+      <p id="transportador-respuesta"></p>
+    </div>
+    <div>
+      <h4>Listar Transportadores</h4>
+      <button onclick="listarTransportadores()">Actualizar Lista</button>
+      <ul id="lista-transportadores"></ul>
+    </div>
+  </div>
+</section>
+
+        <!-- BOVEDAS -->
+        <section class="modulo" data-section="bovedas">
+          <h3>Bóvedas</h3>
+          <div class="modulo-grid">
+            <div>
+              <h4>Registrar Bóveda</h4>
+              <input type="text" id="id-boveda" placeholder="ID Bóveda">
+              <input type="text" id="boveda-banco" placeholder="Banco">
+              <input type="text" id="boveda-plaza" placeholder="Plaza">
+              <button onclick="registrarBoveda()">Registrar</button>
+
+              <h4>Depositar Dinero</h4>
+              <input type="text" id="dep-id-boveda" placeholder="ID Bóveda">
+              <input type="text" id="dep-moneda" placeholder="Moneda">
+              <input type="number" id="dep-valor" placeholder="Valor">
+              <input type="number" id="dep-cantidad" placeholder="Cantidad">
+              <button onclick="depositarDinero()">Depositar</button>
+
+              <h4>Agregar Activo</h4>
+              <input type="text" id="idBoveda" placeholder="ID Bóveda">
+              <input type="text" id="act-tipo" placeholder="Tipo de activo">
+              <div id="valoraciones-container">
+                <div class="valoracion">
+                  <input type="text" class="val-moneda" placeholder="Moneda">
+                  <input type="number" class="val-valor" placeholder="Valor">
+                </div>
+              </div>
+              <button onclick="agregarCampoValoracion()">+ Añadir valoración</button>
+              <button onclick="agregarActivo()">Agregar Activo</button>
+            </div>
+            <div>
+              <h4>Listar Bóvedas</h4>
+              <input type="text" id="boveda-lista-banco" placeholder="Banco">
+              <button onclick="listarBovedas()">Listar</button>
+              <ul id="lista-bovedas"></ul>
+
+              <h4>Estado Bóveda</h4>
+              <input type="text" id="idBovedaE" placeholder="ID Bóveda">
+              <button onclick="verEstadoBoveda()">Ver Estado</button>
+              <div id="estado-boveda-output"></div>
+            </div>
+          </div>
+        </section>
+<!-- TRANSACCIONES -->
+<section class="modulo" data-section="transacciones">
+  <h3>Transacciones</h3>
+
+  <div class="modulo-grid" style="align-items: flex-start;">
+    <!-- Columna izquierda: CREAR -->
+    <div style="flex: 1;">
+      <h4>Crear Nueva Transacción</h4>
+
+      <input type="text" id="trans-transportador" placeholder="Transportador">
+      <input type="text" id="trans-operacion" placeholder="Tipo de Operación">
+      <input type="text" id="trans-fecha-inicio" placeholder="Fecha Inicio (YYYY-MM-DD)">
+      <input type="text" id="trans-fecha-fin" placeholder="Fecha Fin (YYYY-MM-DD)">
+      <input type="text" id="trans-boveda-inicio" placeholder="ID Bóveda Origen">
+      <input type="text" id="trans-boveda-fin" placeholder="ID Bóveda Destino">
+
+      <h5>Dinero a transferir</h5>
+      <input type="text" id="trans-moneda" placeholder="Moneda">
+      <input type="number" id="trans-valor" placeholder="Valor (ej: 100)">
+      <input type="number" id="trans-cantidad" placeholder="Cantidad">
+      <button onclick="agregarDineroTrans()">+ Agregar Dinero</button>
+      <ul id="trans-dinero-lista"></ul>
+
+      <h5>Activos a transferir</h5>
+      <input type="text" id="trans-tipo-activo" placeholder="Tipo de Activo">
+      <input type="text" id="trans-activo-moneda" placeholder="Moneda">
+      <input type="number" id="trans-activo-cantidad" placeholder="Cantidad">
+      <button onclick="agregarActivoTrans()">+ Agregar Activo</button>
+      <ul id="trans-activos-lista"></ul>
+
+      <br>
+      <button onclick="registrarTransaccion()">Registrar Transacción</button>
+      <p id="trans-respuesta"></p>
+    </div>
+
+    <!-- Columna derecha: EJECUTAR y DETALLE -->
+    <div style="flex: 1;">
+      <div>
+        <h4>Ejecutar Transacción</h4>
+        <input type="number" id="transaccion-id" placeholder="ID de transacción">
+        <button onclick="ejecutarDesdeInput()">Ejecutar</button>
+      </div>
+
+      <div style="margin-top: 2em;">
+        <h4>Detalle de Transacción</h4>
+        <input type="number" id="detalle-id" placeholder="ID de transacción">
+        <button onclick="detalleDesdeInput()">Ver Detalle</button>
+        <pre id="detalle-transaccion-output"
+              style="margin-top: 1em; background: #f5f5f5; padding: 1em;"></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+        <!-- SALDOS -->
+        <section class="modulo" data-section="saldos">
+          <h3>Saldos</h3>
+          <div class="modulo-grid">
+            <div>
+              <h4>Registrar Saldo</h4>
+              <input type="text" id="idBovedaRS" placeholder="ID Bóveda">
+              <input type="text" id="saldo-fecha" placeholder="Fecha YYYY-MM-DD">
+              <button onclick="registrarSaldo()">Registrar</button>
+            </div>
+            <div>
+              <h4>Consultar Saldo</h4>
+              <input type="text" id="idBovedaS" placeholder="ID Bóveda">
+              <input type="text" id="consulta-fecha" placeholder="Fecha YYYY-MM-DD">
+              <button onclick="verSaldo()">Ver Saldo</button>
+              <div id="resultado-saldo"></div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="main.js"></script>
+  <script src="simulacion.js"></script>
+  <script src="viewController.js"></script>
+  <script src="transaccion.js"></script>
+  <script src="select.js"></script>
+</body>
+</html>
